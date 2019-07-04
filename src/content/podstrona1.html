@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+		<header class="main-header">
+				<button class="navigation__switcher navigation__switcher--js">&#9776;</button>
+			<nav class="navbar">
+				<ul class="navbar__list navbar__list--js">
+					<li class="navbar__item">
+						<a class="navbar__link" href="index.html">Strona główna</a>
+					</li>
+					<li class="navbar__item">
+						<a class="navbar__link" href="podstrona1.html">Formularze</a>
+					</li>
+					<li class="navbar__item">
+						<a class="navbar__link" href="podstrona2.html">Tabela</a>
+					</li>
+					<li class="navbar__item">
+						<a class="navbar__link" href="podstrona3.html">Grid</a>
+					</li>
+				</ul>
+	
+			</nav>
+			
+	
+		</header>
+	<main class="main">
+		<header class="header">
+			<h1 class="heading">Strona główna</h1>
+		</header>
+		<form action="https://dev.cotenfrontend.pl" class="form" method="POST">
+			<p>
+				<label for="name">Imie: </label><br>
+				<input name="name" type="text" id="name" value="daniel">
+			</p>
+			<fieldset>
+				<legend>Select One</legend>
+				<p>
+					<input value="x" name="radio" type="radio" id="radio1">
+					<label for="radio1">Option 1: </label>
+				</p>
+				<p>
+					<input name="radio" type="radio" id="radio2">
+					<label for="radio2">Option 2: </label>
+				</p>
+				<p>
+					<input name="radio" type="radio" id="radio3">
+					<label for="radio3">Option 3: </label>
+				</p>
+			</fieldset>
+			<p>
+				<label for="checkbox1">check 1 </label>
+				<input name="checkbox" type="checkbox" id="checkbox1">
+			</p>
+			<p>
+				<label for="checkbox2">check 2 </label>
+				<input name="checkbox" type="checkbox" id="checkbox2">
+			</p>
+			<p>
+				<label for="select">select</label>
+				<select name="select" id="select">
+					<option>YES</option>
+					<option>NO</option>
+				</select>
+			</p>
+			<input type="file">
+			<input type="submit" value="Send form">
+		</form>
+	</main>
+	<script src="main.js"></script>
+</body>
+
+</html>

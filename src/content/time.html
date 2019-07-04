@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Timer</title>
+  <style>
+    .main {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image: url('assets/img/landscape.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      box-sizing: content-box;
+      overflow: hidden;
+    }
+    .time {
+      font-size: 6em;
+    }
+    .date {
+      font-size: 1.5em;
+    }
+    .back {
+      position: absolute;
+      top:20px;
+      left: 20px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="main">
+  <a href="index.html" class="back"><</a>
+  <div class="time">
+  </div>
+  <div class="date">
+  </div>
+  <script>
+    const time = document.querySelector('.time');
+
+    const date = document.querySelector('.date');
+    setInterval(timeKeeper, 10);
+    function timeKeeper() {
+      let currentTime = new Date;
+      let formatTime = `${currentTime.getHours()}:${currentTime.getMinutes()}:${addZero(currentTime.getSeconds())}`;
+      let formatDate = `${addZero(currentTime.getDay())}.${addZero(currentTime.getMonth())}.${currentTime.getFullYear()}`;
+      time.innerHTML = formatTime;
+      date.innerHTML = formatDate;
+    }
+    
+    function addZero(timeWithoutZero) {
+      if (timeWithoutZero < 10)
+      return '0'+timeWithoutZero;
+      else 
+      return timeWithoutZero;
+    }
+  </script>
+</body>
+
+</html>

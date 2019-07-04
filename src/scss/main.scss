@@ -11,6 +11,282 @@ html {
 }
 
 body {
-  color: $yellow;
-  background: $violet;
+  background: #fefefe;
+  margin: 0;
+  overflow-y: scroll;
+  background: $backgroundGradient;
+  min-height: 100vh;
+}
+
+.main {
+  padding: 50px 8px 0 8px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 80vh;
+
+}
+.header {
+  grid-area: header;
+
+}
+
+.main-header {
+  background: $headerBackground;
+  position: fixed;
+  width: 100%;
+  min-height: 52px;
+}
+
+.navbar__list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+}
+
+.navbar__item {
+  list-style: none;
+  line-height: 52px;
+
+  text-align: center;
+  @media (max-width: $maxWidth) {
+    width: 100%;
+  }
+}
+.navbar__item:hover {
+  background: darkred;
+}
+
+.navbar__link {
+
+  text-decoration: none;
+  font-size: 20px;
+  padding: 16px 8px;
+  &:hover{
+    color: white;
+  }
+  @media (max-width: $maxWidth) {
+    margin: 16px 50px;
+  }
+}
+
+
+
+
+
+.header__heading {
+  color: #022f40;
+  margin-bottom: 48px;
+}
+
+.header__heading--black {
+  color: black;
+  background: hotpink;
+}
+
+.diary__header--big {
+  color: #0090c1;
+}
+
+.day__header {
+  color: #1c5d6d;
+  margin-bottom: 8px;
+}
+
+
+.day__paragraph {
+  border: 3px solid rgb(33, 107, 98);
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.about {
+  grid-area: about;
+
+}
+
+
+
+.about__image {
+  float: left;
+  clear: both;
+  max-width: 100px;
+  width: 100%;
+  display: block;
+  margin: 0 16px 16px 0;
+}
+
+.about__paragraph {
+  overflow: auto;
+  display: block;
+  border: 3px solid rgb(33, 107, 98);
+  border-radius: 5px;
+  padding: 8px;
+  min-width: 200px;
+
+
+}
+
+.diary {
+  clear: both;
+  grid-area: content;
+}
+.choice__span {
+  display: block;
+}
+.game {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+@mixin img__wrapper {
+  margin: 5px;
+  img{
+    width: 120px;
+    cursor: pointer;
+  }
+}
+.game__rock {
+  @include img__wrapper;
+}
+.game__paper {
+  @include img__wrapper;
+}
+.game__scissors {
+  @include img__wrapper;
+}
+
+.obrazek {
+  background-image: url('../assets/img/htf.png');
+  width: 200px;
+
+  background-position: center center;
+  margin: 8px;
+  border-radius: 8px;
+  background-size: cover;
+
+}
+.hobby_header {
+}
+.hobby_list {
+  list-style: circle;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+}
+thead th {
+  text-align: center;
+}
+thead th:nth-child(1) {
+  width: 10%;
+}
+
+thead th:nth-child(2) {
+  width: auto;
+}
+
+thead th:nth-child(3) {
+  width: 10%;
+}
+
+th,
+td {
+  padding: 20px;
+  border: 1px solid purple;
+}
+
+td:nth-child(1),
+td:nth-child(3) {
+  text-align: center;
+}
+
+.page__grid {
+  display: grid;
+  grid-template-areas: "header header"
+  "about content";
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 80px 1fr;
+  grid-gap: 16px;
+}
+
+.page__grid__item {
+  background: purple;
+  border-radius: 5px;
+}
+
+.page__grid__header {
+  grid-area: header;
+  text-align: center;
+}
+
+.page__grid__article {
+  grid-area: content;
+}
+
+.page__grid__nav {
+  grid-area: menu;
+}
+.page__grid__footer {
+  grid-area: footer;
+}
+.page__grid__element {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 16px;
+
+  
+}
+
+@media (min-width: 701px) {
+  .main {
+    max-width: 900px;
+  }
+  .navigation__switcher {
+    display: none;
+  }
+
+}
+@media (max-width: $maxWidth) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .navbar__list {
+    flex-direction: column;
+    display: none;
+    padding-inline-start: 0;
+  }
+  .navbar__list--visible {
+    display: flex;
+  }
+  .navigation__switcher {
+    border: none;
+    background: none;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 1.4em;
+  }
+  .main {
+    grid-template-areas: "header"
+    "content"
+    "about";
+    grid-template-columns: 1fr;
+  }
+  .obrazek {
+    display: none;
+  }
 }

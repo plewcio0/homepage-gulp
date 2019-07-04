@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "predeploy": "gulp build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-p ages -d dist"
   },
   "repository": {
     "type": "git",
