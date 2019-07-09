@@ -50,7 +50,7 @@
     setInterval(timeKeeper, 10);
     function timeKeeper() {
       let currentTime = new Date;
-      let formatTime = `${currentTime.getHours()}:${currentTime.getMinutes()}:${addZero(currentTime.getSeconds())}`;
+      let formatTime = `${addZero(currentTime.getHours())}:${addZero(currentTime.getMinutes())}:${addZero(currentTime.getSeconds())}`;
       let formatDate = `${addZero(currentTime.getDay())}.${addZero(currentTime.getMonth())}.${currentTime.getFullYear()}`;
       time.innerHTML = formatTime;
       date.innerHTML = formatDate;

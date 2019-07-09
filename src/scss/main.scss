@@ -1,6 +1,7 @@
 @import "_normalize";
 @import "_variables";
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 html {
   box-sizing: border-box;
@@ -16,6 +17,7 @@ body {
   overflow-y: scroll;
   background: $backgroundGradient;
   min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .main {
@@ -59,7 +61,15 @@ body {
 .navbar__item:hover {
   background: darkred;
 }
+.ul
+{
+  
+  border: 1px solid black;
 
+}
+.li__item {
+  margin: 8px 0;
+}
 .navbar__link {
 
   text-decoration: none;
@@ -289,4 +299,8 @@ td:nth-child(3) {
   .obrazek {
     display: none;
   }
+}
+.testButton {
+  width: 200px;
+  height: 200px;
 }
