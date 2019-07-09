@@ -83,4 +83,16 @@ function controlScore(winner){
     {scoreboard.player++;score.innerHTML = `Computer: ${scoreboard.computer} - Player: ${scoreboard.player}`;}
     else
         {console.log('remis');score.innerHTML = `Computer: ${scoreboard.computer} - Player: ${scoreboard.player}`;}
+        localStorage.setItem("wynik",JSON.stringify(scoreboard));
+    }
+
+
+
+
+if (localStorage.length != 0) {
+    const d = document.querySelector('.lastWin');
+    const obj = JSON.parse(localStorage.getItem('wynik'));
+    console.log(obj);
+    d.innerHTML = `Poprzedni wynik: ${Object.keys(obj)[1]} ${obj.computer} - ${Object.keys(obj)[0]} ${obj.player}`;
+
 }
