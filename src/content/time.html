@@ -34,6 +34,16 @@
       color: black;
       font-weight: bold;
     }
+    .text-area {
+
+    }
+    input[type="text"] {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      font-size: 1.2em;
+      width: 150px;
+    }
   </style>
 </head>
 
@@ -43,10 +53,20 @@
   </div>
   <div class="date">
   </div>
-  <script>
+  <div class="text-area">Main task: <input type="text" class="text_area--js" placeholder="[enter task here]"></input></div>
+<script>
     const time = document.querySelector('.time');
-
     const date = document.querySelector('.date');
+
+    const textAreaJs = document.querySelector('.text_area--js');
+    if (localStorage.task != 0)
+    {
+      textAreaJs.value = localStorage.task;
+    }
+    textAreaJs.addEventListener('keyup', (e) => {
+      console.log(e.target.value);
+      localStorage.setItem('task',e.target.value);
+    })
     setInterval(timeKeeper, 10);
     function timeKeeper() {
       let currentTime = new Date;
@@ -62,6 +82,7 @@
       else 
       return timeWithoutZero;
     }
+    
   </script>
 </body>
 

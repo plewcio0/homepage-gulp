@@ -6,65 +6,241 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
-  <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/main.css">
+	<style>
+		html {
+			box-sizing: border-box;
+		}
+
+		.container {
+			border: 1px solid grey;
+			border-radius: 5px;
+		}
+
+		.list {
+			padding-inline-start: 0;
+			padding: 0 16px 16px 16px;
+
+		}
+
+		.list__item {
+			background: white;
+			list-style-type: none;
+			border: 1px solid gray;
+			position: relative;
+			padding: 8px;
+			height: 35px;
+			margin: -1px 0;
+		}
+
+		.list__button {
+			background-color: red;
+			border: none;
+			width: 25px;
+			height: 25px;
+			position: absolute;
+			right: 8px;
+			top: 5px;
+			color: white;
+			border-radius: 5px;
+		}
+
+		.input {
+			display: inline-block;
+			border-radius: 5px;
+			height: 30px;
+			border: none;
+		}
+
+		.list__container {
+			grid-area: list;
+		}
+
+		.header {
+			padding: 16px;
+			grid-area: add;
+		}
+
+		.heading {
+			display: block;
+		}
+
+		.submit__button {
+
+			border-radius: 5px;
+			border: none;
+			color: white;
+			background: rgb(14, 2, 180);
+			padding: 8px;
+			display: inline-block;
+			height: 30px;
+			cursor: pointer;
+		}
+
+		.container {
+			display: grid;
+			grid-template-areas: "add filter"
+				"list list";
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 100px;
+		}
+
+		.filter {
+			grid-area: filter;
+			padding: 16px;
+		}
+
+		.filterInput {
+			display: inline-block;
+			border-radius: 5px;
+			height: 30px;
+			border: none;
+
+		}
+
+		.filterLabel {
+			display: block;
+		}
+	</style>
 </head>
 
 <body>
-		<header class="main-header">
-				<button class="navigation__switcher navigation__switcher--js">&#9776;</button>
-			<nav class="navbar">
-				<ul class="navbar__list navbar__list--js">
-					<li class="navbar__item">
-						<a class="navbar__link" href="index.html">Strona główna</a>
-					</li>
-					<li class="navbar__item">
-						<a class="navbar__link" href="podstrona1.html">Formularze</a>
-					</li>
-					<li class="navbar__item">
-						<a class="navbar__link" href="podstrona2.html">Tabela</a>
-					</li>
-					<li class="navbar__item">
-						<a class="navbar__link" href="podstrona3.html">Grid</a>
-					</li>
-				</ul>
-	
-			</nav>
-			
+	<header class="main-header">
+		<button class="navigation__switcher navigation__switcher--js">&#9776;</button>
+		<nav class="navbar">
+			<ul class="navbar__list navbar__list--js">
+				<li class="navbar__item">
+					<a class="navbar__link" href="index.html">Strona główna</a>
+				</li>
+				<li class="navbar__item">
+					<a class="navbar__link" href="podstrona1.html">Formularze</a>
+				</li>
+				<li class="navbar__item">
+					<a class="navbar__link" href="podstrona2.html">Tabela</a>
+				</li>
+				<li class="navbar__item">
+					<a class="navbar__link" href="podstrona3.html">Grid</a>
+				</li>
+			</ul>
+		</nav>
 
-		</header>
+
+	</header>
 	<main class="main">
-		<header class="header">
-			<h1 class="heading">Lista do filtrowania</h1>
-			<input type="text" id="search" autocomplete="off">
-		</header>
-		<br>
-		<br>
-		<br>
-		<br>
-		<ol class="ul">
-			<li class="li__item">Audi</li>
-			<li class="li__item">BMW</li>
-			<li class="li__item">Mercedes</li>
-			<li class="li__item">Opel</li>
-			<li class="li__item">Volvo</li>
-		</ol>
+		<section class="container">
+			<header class="header">
+				<label for="search" class="heading">Add Items</label>
+				<input name="search" type="text" id="search" autocomplete="off" class="input">
+				<input type="submit" value="Add" class="submit__button submit__button--js">
+			</header>
+			<div class="filter">
+				<label class="filterLabel" for="filterinp">Szukaj:</label>
+				<input type="text" id="filterinp" name="filterinp" class="filterInput filterInput--js">
+
+			</div>
+			<div class="list__container list__container--js">
+				<ul class="list list--js">
+				</ul>
+			</div>
+		</section>
 	</main>
 	<script>
-		const searchInput = document.querySelector('#search');
-		searchInput.addEventListener('input', filter);
+		var id = 1;
+		const listItem = document.querySelector('.list');
+		const listButton = document.querySelector('.list__button--js');
+		const input = document.querySelector('.input');
+		const list = document.querySelector('.list--js');
+		const submitButton = document.querySelector('.submit__button--js')
+		const listContainer = document.querySelector('.list__container--js')
+		const filterInput = document.querySelector('.filterInput--js');
+		submitButton.addEventListener('click', addItem);
+		list.addEventListener('click', removeItem);
+		filterInput.addEventListener('keyup', filter);
+		input.addEventListener('keydown',(e) => {
+			if (e.keyCode == 13)
+			{
+				addItem(e); 
+			}
+		})
 
+		const object = JSON.parse(localStorage.content); 
+		// Show list
+		window.addEventListener('DOMContentLoaded',showList(object));
 
-		function filter(e) {
-			var itemlist = document.getElementsByClassName('li__item');
+		function showList(content){
+			const list = document.querySelector('.list');
 
-			Array.from(itemlist).forEach(function(item) {
-				var itemname = item.textContent;
-				if(itemname.toLowerCase().indexOf(e.target.value) != -1)
-					item.style.display = 'list-item';
-				else
-					item.style.display = 'none';
-			})
+			for (var item in content) {
+
+				var li = document.createElement('li');
+				li.classList = 'list__item';
+				li.innerHTML = `
+					${content[item].value}<button class="list__button list__button--js">X</button>
+				`;
+				list.appendChild(li);
+			}
 		}
+		function filter(e) {
+			var listItems = document.querySelectorAll('.list__item');
+			Array.from(listItems).forEach(function (item) {
+				if (item.innerText.toLowerCase().includes(e.target.value.toLowerCase()))
+					item.style.display = 'block';
+				else {
+					item.style.display = 'none';
+				}
+			})
+
+		}
+		function addItem(e) {
+			if (input.value) {
+				let liElement = document.createElement('li');
+				liElement.classList = 'list__item';
+				liElement.innerHTML = input.value;
+				let buttonElement = document.createElement('button');
+				buttonElement.classList = 'list__button list__button--js';
+				buttonElement.innerHTML = 'X';
+				liElement.appendChild(buttonElement);
+				list.appendChild(liElement);
+				object.push({id: id, value: input.value});
+				id++;
+				input.value = '';
+			}
+			else {
+				alert('Podaj wartość');
+			}
+			var json = JSON.stringify(object);
+			localStorage.setItem('content',json);
+		}
+		
+		function removeItem(e) {
+			if (e.target.classList.contains('list__button--js')) {
+				if (confirm("Are you sure want to delete ")) {
+					var li = e.target.parentElement;
+					for (var item in object)
+					{
+						let v1 = object[item].value.toLowerCase();
+						let v2 = li.innerText.toLowerCase().slice(0,-2);
+						if (v1 == v2)
+						{
+							object.splice(item,1);
+							console.log(v1 + " removed!");
+						}
+					}
+					listItem.removeChild(li);
+
+				}
+				else {
+					console.log('not sure');
+				}
+			}
+			console.log(object);
+			var json = JSON.stringify(object);
+			localStorage.setItem('content',json);
+			
+		}
+
+
+
 	</script>
 </body>
 
