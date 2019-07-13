@@ -162,9 +162,10 @@
 				addItem(e); 
 			}
 		})
-		if (localStorage != 0)
+		var object;
+		if (localStorage.content != [] && localStorage.content != undefined && localStorage.content != null)
 		{
-			const object = JSON.parse(localStorage.content); 
+			object = JSON.parse(localStorage.content); 
 		}
 		// Show list
 		window.addEventListener('DOMContentLoaded',showList(object));
