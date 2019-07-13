@@ -162,8 +162,10 @@
 				addItem(e); 
 			}
 		})
-
-		const object = JSON.parse(localStorage.content); 
+		if (localStorage != 0)
+		{
+			const object = JSON.parse(localStorage.content); 
+		}
 		// Show list
 		window.addEventListener('DOMContentLoaded',showList(object));
 
